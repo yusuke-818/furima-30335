@@ -1,4 +1,7 @@
 class FurimasController < ApplicationController
-  def index
+
+  def new
+    @furima = Furima.new
   end
+
 end
