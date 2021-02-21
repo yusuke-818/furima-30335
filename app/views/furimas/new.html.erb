@@ -21,7 +21,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :image_tag, id:"item-image" %>
+        <%= f.file_field :image_tag furima.image.variant(resize: '500x500'), id:"item-image" if message.image.attached? %>
       </div>
     </div>
     <%# /出品画像 %>
