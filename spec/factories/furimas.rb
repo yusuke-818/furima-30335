@@ -1,14 +1,14 @@
 FactoryBot.define do
   factory :furima do
-    item             {'株式投資の本'}
-    info             {'お金持ちになれます'}
-    category_id      {2}
-    states_id        {2}
-    shipping_id      {2}
-    prefecture_id    {2}
-    shipping_days_id {2}
-    price            {500}
-    #association :order
+    item             { '株式投資の本' }
+    info             { 'お金持ちになれます' }
+    category_id      { 2 }
+    states_id        { 2 }
+    shipping_id      { 2 }
+    prefecture_id    { 2 }
+    shipping_days_id { 2 }
+    price            { 500 }
+    # association :order
     association :user
 
     after(:build) do |furima|
