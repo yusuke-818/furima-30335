@@ -89,8 +89,20 @@ RSpec.describe Furima, type: :model do
         expect(@furima.errors.full_messages).to include('Price is out of setting range')
       end
 
-      it '価格が半角数字以外であれば保存できないこと' do
-        @furima.price = '５００'
+      it '価格が半角英数字混合では出品出来ない' do
+        @furima.price = '1o0'
+        @furima.valid?
+        expect(@furima.errors.full_messages).to include('Price is invalid. Input half-width characters.')
+      end
+
+      it '価格が半角英字のみでは出品出来ない' do
+        @furima.price = 'OOO'
+        @furima.valid?
+        expect(@furima.errors.full_messages).to include('Price is invalid. Input half-width characters.')
+      end
+
+      it '価格が全角文字では出品できない' do
+        @furima.price = '１０００'
         @furima.valid?
         expect(@furima.errors.full_messages).to include('Price is invalid. Input half-width characters.')
       end
