@@ -12,7 +12,7 @@ class Furima < ApplicationRecord
 
   validates :image, :item, :info, :price, presence: true
   with_options numericality: { other_than: 1 } do
-    validates :category_id 
+    validates :category_id
     validates :states_id
     validates :shipping_id
     validates :prefecture_id
