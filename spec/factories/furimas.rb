@@ -8,7 +8,7 @@ FactoryBot.define do
     prefecture_id    { 2 }
     shipping_days_id { 2 }
     price            { 500 }
-    
+
     association :user
 
     after(:build) do |furima|
