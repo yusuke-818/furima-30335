@@ -21,15 +21,12 @@ class FurimasController < ApplicationController
   end
 
   def show
-    
   end
 
   def edit
-    
   end
 
   def update
-    
     if @furima.update(furima_params)
       redirect_to furima_path
     else
@@ -47,8 +44,6 @@ class FurimasController < ApplicationController
     params.require(:furima).permit(:image, :item, :info, :category_id, :states_id, :shipping_id, :prefecture_id,
                                    :shipping_days_id, :price).merge(user_id: current_user.id)
   end
-
-  #<% if current_user.id == @furima.user_id %>
 
   def contributor_confirmation
     redirect_to root_path unless current_user == @furima.user
