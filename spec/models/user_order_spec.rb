@@ -52,6 +52,11 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Prefecture Select")
       end
+      it "tokenが空では登録できないこと" do
+        @user_order.token = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
