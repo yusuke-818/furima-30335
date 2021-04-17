@@ -51,7 +51,7 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order.errors.full_messages).to include('Phone number Input only number')
       end
       it 'prefectureは選択しないと登録できないこと' do
-        @user_order.prefecture_id = '-'
+        @user_order.prefecture_id = 1
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include('Prefecture Select')
       end
