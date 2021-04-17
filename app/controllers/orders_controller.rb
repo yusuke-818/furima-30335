@@ -1,15 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
   before_action :contributor_confirmation, only: [:index, :create]
   before_action :sold_out, only: [:index, :create]
 
   def index
-    @furima = Furima.find(params[:furima_id])
     @user_order = UserOrder.new
   end
 
   def create
-    @furima = Furima.find(params[:furima_id])
     @user_order = UserOrder.new(order_params)
     if @user_order.valid?
       pay_item
@@ -21,6 +20,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_order
+    @furima = Furima.find(params[:furima_id])
+  end
 
   def order_params
     params.require(:user_order).permit(:postal_code, :prefecture_id, :city, :addresses, :building, :phone_number).merge(
@@ -38,7 +41,6 @@ class OrdersController < ApplicationController
   end
 
   def contributor_confirmation
-    @furima = Furima.find(params[:furima_id])
     redirect_to root_path if current_user == @furima.user
   end
 
