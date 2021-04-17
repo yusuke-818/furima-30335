@@ -3,6 +3,8 @@ class UserOrder
   attr_accessor :user_id, :furima_id, :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :token
 
   with_options presence: true do
+    validates :user_id
+    validates :furima_id
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'Include hyphen(-)' }
     validates :city
     validates :addresses
