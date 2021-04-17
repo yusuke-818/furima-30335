@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :furimas
   has_many :orders
-  
+
   validates :nickname, presence: true
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers'
@@ -19,5 +19,4 @@ class User < ApplicationRecord
     validates :first_name_reading
     validates :last_name_reading
   end
-  
 end

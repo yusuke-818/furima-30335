@@ -4,7 +4,7 @@ RSpec.describe UserOrder, type: :model do
   before do
     @user_order = FactoryBot.build(:user_order)
   end
-  
+
   describe '配送先情報の保存' do
     context '配送先情報が保存できるとき' do
       it '全ての情報が正しく入力されていれば保存できること' do
@@ -25,7 +25,7 @@ RSpec.describe UserOrder, type: :model do
       it 'postal_codeは-がなければ保存されないこと' do
         @user_order.postal_code = '1112222'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Postal code Include hyphen(-)")
+        expect(@user_order.errors.full_messages).to include('Postal code Include hyphen(-)')
       end
       it 'cityが空では登録できないこと' do
         @user_order.city = ''
@@ -45,14 +45,14 @@ RSpec.describe UserOrder, type: :model do
       it 'phone_numberは数字のみでないと登録できないこと' do
         @user_order.phone_number = '090abcdefgh'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Phone number Input only number")
+        expect(@user_order.errors.full_messages).to include('Phone number Input only number')
       end
       it 'prefectureは選択しないと登録できないこと' do
         @user_order.prefecture_id = '-'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Prefecture Select")
+        expect(@user_order.errors.full_messages).to include('Prefecture Select')
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @user_order.token = nil
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Token can't be blank")

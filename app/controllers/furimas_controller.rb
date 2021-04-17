@@ -57,8 +57,6 @@ class FurimasController < ApplicationController
 
   def sold_out
     @furima = Furima.find(params[:id])
-    if @furima.order.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if @furima.order.present?
   end
 end
