@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :contributor_confirmation, only: [:index, :create]
+  before_action :sold_out, only: [:index, :create]
 
   def index
     @furima = Furima.find(params[:furima_id])
@@ -31,5 +34,19 @@ class OrdersController < ApplicationController
         card: order_params[:token],    # カードトークン
         currency: 'jpy'                # 通貨の種類（日本円）
       )
+  end
+
+  def contributor_confirmation
+    @furima = Furima.find(params[:furima_id])
+    if current_user == @furima.user
+      redirect_to root_path
+    end  
+  end
+
+  def sold_out
+    @furima = Furima.find(params[:furima_id])
+    if @furima.order.present?
+      redirect_to root_path
+    end
   end
 end
