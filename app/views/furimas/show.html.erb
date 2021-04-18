@@ -8,11 +8,11 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @furima.image, class: "item-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+      <% if @furima.order.present? %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -30,9 +30,10 @@
         <p class="or-text">or</p>
         <%= link_to "削除", furima_path, method: :delete, class:"item-destroy" %>
       <% else %>
-        <%# 商品が売れていない場合はこちらを表示しましょう %>
-        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-        <%# //商品が売れていない場合はこちらを表示しましょう %>
+        <% if @furima.order == nil %>
+        <%= link_to "購入画面に進む", furima_orders_path(furima_id:@furima.id), method: :get, class:"item-red-btn"%>
+        <% end %>
+
       <% end %>
     <% end %>
 
