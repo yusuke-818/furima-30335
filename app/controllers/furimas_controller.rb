@@ -2,7 +2,7 @@ class FurimasController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_furima, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
-  before_action :sold_out, only: [:edit, :destroy]
+  before_action :sold_out, only: [:edit, :destroy, :update]
 
   def index
     @furimas = Furima.all.order('created_at DESC')
@@ -56,7 +56,6 @@ class FurimasController < ApplicationController
   end
 
   def sold_out
-    @furima = Furima.find(params[:id])
     redirect_to root_path if @furima.order.present?
   end
 end

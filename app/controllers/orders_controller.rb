@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:index, :create]
+  before_action :set_furima, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
   before_action :contributor_confirmation, only: [:index, :create]
   before_action :sold_out, only: [:index, :create]
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
   private
 
-  def set_order
+  def set_furima
     @furima = Furima.find(params[:furima_id])
   end
 
@@ -45,7 +45,6 @@ class OrdersController < ApplicationController
   end
 
   def sold_out
-    @furima = Furima.find(params[:furima_id])
     redirect_to root_path if @furima.order.present?
   end
 end
