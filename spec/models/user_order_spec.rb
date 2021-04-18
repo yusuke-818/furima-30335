@@ -50,6 +50,11 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include('Phone number Input only number')
       end
+      it 'phone_numberは12桁以上の場合登録できないこと' do
+        @user_order.phone_number = '090123456789'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include('Phone number Input only number')
+      end
       it 'prefectureは選択しないと登録できないこと' do
         @user_order.prefecture_id = 1
         @user_order.valid?
@@ -64,6 +69,11 @@ RSpec.describe UserOrder, type: :model do
         @user_order.user_id = ''
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'furima_idが空では登録できないこと' do
+        @user_order.furima_id = ''
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Furima can't be blank")
       end
     end
   end
