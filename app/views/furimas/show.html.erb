@@ -24,9 +24,8 @@
       </span>
     </div>
 
-    <% if user_signed_in? && @furima.order.present? == nil %>
-    <%# ユーザーがログインしていて、かつ、商品がまだ売れていなかったら %>
-      <% if current_user.id == @furima.user_id %>
+    <% if user_signed_in? %>
+      <% if current_user.id == @furima.user_id && @furima.order == nil %>
         <%= link_to "商品の編集", edit_furima_path, method: :get, class: "item-red-btn" %>
         <p class="or-text">or</p>
         <%= link_to "削除", furima_path, method: :delete, class:"item-destroy" %>
@@ -34,7 +33,6 @@
         <% if @furima.order == nil %>
         <%= link_to "購入画面に進む", furima_orders_path(furima_id:@furima.id), method: :get, class:"item-red-btn"%>
         <% end %>
-
       <% end %>
     <% end %>
 
