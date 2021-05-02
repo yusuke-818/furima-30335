@@ -57,7 +57,7 @@
 .lists-left {
   display: flex;
   min-width: 200px;
-
+  justify-content: space-between;
 }
 
 .category-list {
@@ -77,6 +77,15 @@
   align-items: flex-end;
 }
 
+.user_nav grid-6 {
+  display: flex;
+  justify-content: space-between
+}
+
+.grid-6 {
+  display: flex;
+  justify-content: space-between
+}
 
 .user-nickname {
   text-decoration: none;
